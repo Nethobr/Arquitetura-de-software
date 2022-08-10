@@ -1,3 +1,3 @@
 # ARQUITETURA DE SOFTWARE
 
-PROFESSOR: Geucimar Briatore.
+Professor: Geucimar Briatore.
