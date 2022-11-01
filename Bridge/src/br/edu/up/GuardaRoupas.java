@@ -1,7 +1,10 @@
 package br.edu.up;
 
+import br.edu.up.cores.Branco;
 import br.edu.up.cores.Verde;
-import br.edu.up.cores.Vermelha;
+import br.edu.up.cores.Vermelho;
+import br.edu.up.marcas.Adidas;
+import br.edu.up.marcas.Nike;
 import br.edu.up.roupas.Camisa;
 import br.edu.up.roupas.Cueca;
 
@@ -11,21 +14,21 @@ public class GuardaRoupas {
 		
 		//	Criando uma camisa
 		RoupaAbstrata camisaVerde = 
-				new Camisa(new Verde(), "GG");
+				new Camisa(new Verde(), new Nike(), "GG");
 		camisaVerde.criarRoupa();
 		
 		System.out.println();
 		
-		//	Criando um cuequinha melada
-		RoupaAbstrata cueca = 
-				new Cueca(new Verde(), "GG");
-		cueca.criarRoupa();
+		//	Criando uma cueda melada da adidas
+		RoupaAbstrata cucecaMelada =
+				new Cueca(new Vermelho(), new Adidas(), "GG");
+		cucecaMelada.criarRoupa();
 		
 		System.out.println();
 		
-		//	Criando um camisa vermelha
-		RoupaAbstrata camisaVermelha =
-				new Camisa(new Vermelha(), "G");
-		camisaVermelha.criarRoupa();
+		//	Criando uma camisa da adidas
+		RoupaAbstrata camisaAdidas =
+				new Camisa(new Branco(), new Adidas(), "GG");
+		camisaAdidas.criarRoupa();
 	}
 }

@@ -2,7 +2,7 @@ package br.edu.up.cores;
 
 import br.edu.up.RoupaImplementation;
 
-public class Verde implements RoupaImplementation
+public class Branco implements RoupaImplementation
 {
 	@Override
 	public void setRoupa(String roupa) {
@@ -21,6 +21,6 @@ public class Verde implements RoupaImplementation
 	
 	@Override
 	public void setCor() {
-		System.out.println("Cor: Verde.");
+		System.out.println("Cor: Branco.");
 	}
 }

@@ -20,6 +20,11 @@ public abstract class RoupaAbstrata
 		roupa.setTamanho(t);
 	}	
 	
+	public void setMarca(String m)
+	{
+		roupa.setMarca(m);
+	}
+	
 	public void setCor ()
 	{
 		roupa.setCor();

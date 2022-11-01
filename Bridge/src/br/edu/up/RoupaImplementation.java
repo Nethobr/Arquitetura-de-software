@@ -6,9 +6,11 @@ public interface RoupaImplementation
 	void setRoupa(String roupa);
 	
 	//	Tamanho
-	void setTamanho(String tam);
+	void setTamanho(String tamanho);
 	
-	// Cor
+	//	Marca
+	void setMarca(String m);
+	
+	//	Cor
 	void setCor();
-
 }	// CamisaImplementation
