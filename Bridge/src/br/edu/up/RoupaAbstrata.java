@@ -20,14 +20,19 @@ public abstract class RoupaAbstrata
 		roupa.setTamanho(t);
 	}	
 	
-	public void setMarca(String m)
+	public void setEstampa(String estampa)
 	{
-		roupa.setMarca(m);
+		roupa.setEstampa(estampa);
 	}
 	
-	public void setCor ()
+	public void setMarca(String marca)
 	{
-		roupa.setCor();
+		roupa.setMarca(marca);
+	}
+	
+	public void setCor (String cor)
+	{
+		roupa.setCor(cor);
 	}
 
 	// Manda criar a roupa

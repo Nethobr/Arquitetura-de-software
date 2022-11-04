@@ -1,26 +1,11 @@
 package br.edu.up.cores;
 
-import br.edu.up.RoupaImplementation;
+import br.edu.up.CorImplementation;
 
-public class Vermelho implements RoupaImplementation
+public class Vermelho implements CorImplementation
 {
 	@Override
-	public void setRoupa(String roupa) {
-		System.out.println(roupa);
-	}
-	
-	@Override
-	public void setMarca(String marca) {
-		System.out.println("Marca: " + marca + ".");
-	}
-	
-	@Override
-	public void setTamanho(String tam) {
-		System.out.println("Tamanho: " + tam + ".");
-	}
-	
-	@Override
-	public void setCor() {
-		System.out.println("Cor: Vermelho.");
+	public String getNome() {
+		return "Vermelho";
 	}
 }

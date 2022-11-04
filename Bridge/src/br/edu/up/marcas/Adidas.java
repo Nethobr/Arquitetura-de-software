@@ -1,5 +1,6 @@
 package br.edu.up.marcas;
 
+
 import br.edu.up.MarcaImplementation;
 
 public class Adidas implements MarcaImplementation
@@ -8,5 +9,4 @@ public class Adidas implements MarcaImplementation
 	public String getNome() {
 		return "Adidas";
 	}
-
 }
