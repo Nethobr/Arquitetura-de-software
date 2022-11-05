@@ -5,15 +5,16 @@ public interface RoupaImplementation
 	//	Nome
 	void setRoupa(String roupa);
 	
-	//	Tamanho
-	void setTamanho(String tamanho);
-	
-	//	Marca
-	void setMarca(String marca);
-	
-	// Estampa
-	void setEstampa(String estampa);
-	
 	//	Cor
 	void setCor(String cor);
+	
+	//	Marca
+	void setMarca(MarcaAbstrata m);
+	
+	// Estampa
+	void setEstampa(EstampaImplementation e);
+	
+	//	Tamanho
+	void setTamanho(String tamanho);
+
 }	// CamisaImplementation

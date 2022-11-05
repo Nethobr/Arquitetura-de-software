@@ -20,12 +20,12 @@ public abstract class RoupaAbstrata
 		roupa.setTamanho(t);
 	}	
 	
-	public void setEstampa(String estampa)
+	public void setEstampa(EstampaImplementation e)
 	{
-		roupa.setEstampa(estampa);
+		roupa.setEstampa(e);
 	}
 	
-	public void setMarca(String marca)
+	public void setMarca(MarcaAbstrata marca)
 	{
 		roupa.setMarca(marca);
 	}

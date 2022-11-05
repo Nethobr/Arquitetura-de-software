@@ -5,7 +5,7 @@ import br.edu.up.MarcaImplementation;
 public class Nike implements MarcaImplementation
 {
 	@Override
-	public String getNome() {
-		return "Nike";
+	public void getNome() {
+		System.out.print("Nike");
 	}
 }

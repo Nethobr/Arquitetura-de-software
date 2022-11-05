@@ -2,5 +2,5 @@ package br.edu.up;
 
 public interface MarcaImplementation 
 {
-	String getNome	();
+	void getNome ();
 }
