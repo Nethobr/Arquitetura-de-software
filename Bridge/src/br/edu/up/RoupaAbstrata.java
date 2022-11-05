@@ -30,7 +30,7 @@ public abstract class RoupaAbstrata
 		roupa.setMarca(marca);
 	}
 	
-	public void setCor (String cor)
+	public void setCor (CorAbstrata cor)
 	{
 		roupa.setCor(cor);
 	}

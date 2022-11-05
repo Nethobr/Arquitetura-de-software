@@ -6,7 +6,7 @@ public interface RoupaImplementation
 	void setRoupa(String roupa);
 	
 	//	Cor
-	void setCor(String cor);
+	void setCor(CorAbstrata cor);
 	
 	//	Marca
 	void setMarca(MarcaAbstrata m);

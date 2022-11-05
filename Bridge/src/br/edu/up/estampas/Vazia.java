@@ -5,7 +5,7 @@ import br.edu.up.EstampaImplementation;
 
 public class Vazia implements EstampaImplementation
 {
-	ArrayList<String> detalhes;
+	ArrayList<String> detalhes = new ArrayList<>();
 
 	@Override
 	public String desenhoEstampa(){
@@ -14,6 +14,6 @@ public class Vazia implements EstampaImplementation
 
 	@Override
 	public ArrayList<String> detalheEstampa() {
-		return null;
+		return detalhes;
 	}
 }

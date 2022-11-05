@@ -3,9 +3,9 @@ package br.edu.up.marcas;
 import br.edu.up.MarcaAbstrata;
 import br.edu.up.MarcaImplementation;
 
-public class ImplementarMarca extends MarcaAbstrata
+public class Marca extends MarcaAbstrata
 {
-	public ImplementarMarca(MarcaImplementation marca) {
+	public Marca(MarcaImplementation marca) {
 		super(marca);
 	}
 
