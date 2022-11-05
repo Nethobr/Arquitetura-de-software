@@ -20,7 +20,7 @@ public abstract class RoupaAbstrata
 		roupa.setTamanho(t);
 	}	
 	
-	public void setEstampa(EstampaImplementation e)
+	public void setEstampa(EstampaAbstrata e)
 	{
 		roupa.setEstampa(e);
 	}

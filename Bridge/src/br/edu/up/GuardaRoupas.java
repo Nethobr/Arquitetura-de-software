@@ -4,6 +4,7 @@ import br.edu.up.cores.Branco;
 import br.edu.up.cores.Cor;
 import br.edu.up.cores.Vermelho;
 import br.edu.up.estampas.Caveira;
+import br.edu.up.estampas.Estampa;
 import br.edu.up.estampas.Vazia;
 import br.edu.up.marcas.Adidas;
 import br.edu.up.marcas.Marca;
@@ -17,11 +18,11 @@ public class GuardaRoupas {
 		
 		//	Uma Camisa
 		RoupaAbstrata camisa = 
-				new Camisa( new Cor(new Branco()),	//	Cor.
-							new Marca(new Adidas()),// 	a marca.
-							new Caveira (),			//	Estampa.
-							"GG", 					//	Tamanho
-							new ImplementarRoupa());// Implementando a roupa.
+				new Camisa( new Cor(	new Branco()),		//	Cor.
+							new Marca(	new Adidas()),		// 	a marca.
+							new Estampa(new Caveira ()),	//	Estampa.
+							"GG", 							//	Tamanho
+							new ImplementarRoupa());		// Implementando a roupa.
 		//	Criando a roupa:
 		camisa.criarRoupa();
 		
@@ -29,9 +30,9 @@ public class GuardaRoupas {
 		
 		//	Uma Cueca
 		RoupaAbstrata cueca =
-				new Cueca(	new Cor(new Vermelho()), 
-							new Marca(new Lacoste()), 
-							new Vazia(),
+				new Cueca(	new Cor(	new Vermelho()), 
+							new Marca(	new Lacoste()), 
+							new Estampa(new Vazia()),
 							"GGG",
 							new ImplementarRoupa());
 		//	Criando a cueca:

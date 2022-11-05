@@ -8,9 +8,9 @@ public abstract class MarcaAbstrata
 		this.marca = marca;
 	}
 	
-	public void getNome()
+	public String getNome()
 	{
-		marca.getNome();
+		return marca.getNome();
 	}
 	
 	abstract public void criarMarca();

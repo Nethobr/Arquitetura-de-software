@@ -12,7 +12,7 @@ public interface RoupaImplementation
 	void setMarca(MarcaAbstrata m);
 	
 	// Estampa
-	void setEstampa(EstampaImplementation e);
+	void setEstampa(EstampaAbstrata e);
 	
 	//	Tamanho
 	void setTamanho(String tamanho);
