@@ -2,7 +2,7 @@ package br.edu.up.estampas;
 
 import java.util.ArrayList;
 
-import br.edu.up.EstampaImplementation;
+import br.edu.up.interfaces.EstampaImplementation;
 
 public class Caveira implements EstampaImplementation
 {
@@ -21,6 +21,7 @@ public class Caveira implements EstampaImplementation
 		detalhes.add("Osso");
 		detalhes.add("Osso velho");
 		detalhes.add("Ossinho");
+		detalhes.add("Osso novo");
 		
 		return detalhes;
 	}

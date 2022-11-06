@@ -1,7 +1,7 @@
 package br.edu.up.marcas;
 
-import br.edu.up.MarcaAbstrata;
-import br.edu.up.MarcaImplementation;
+import br.edu.up.abstracoes.MarcaAbstrata;
+import br.edu.up.interfaces.MarcaImplementation;
 
 public class Marca extends MarcaAbstrata
 {

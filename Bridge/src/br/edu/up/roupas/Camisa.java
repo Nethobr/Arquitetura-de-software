@@ -1,10 +1,11 @@
 package br.edu.up.roupas;
 
-import br.edu.up.CorAbstrata;
-import br.edu.up.EstampaAbstrata;
-import br.edu.up.MarcaAbstrata;
-import br.edu.up.RoupaAbstrata;
-import br.edu.up.RoupaImplementation;
+import br.edu.up.abstracoes.CorAbstrata;
+import br.edu.up.abstracoes.EstampaAbstrata;
+import br.edu.up.abstracoes.MarcaAbstrata;
+import br.edu.up.abstracoes.RoupaAbstrata;
+import br.edu.up.abstracoes.TamanhoAbstrato;
+import br.edu.up.interfaces.RoupaImplementation;
 
 public class Camisa extends RoupaAbstrata
 {
@@ -12,11 +13,12 @@ public class Camisa extends RoupaAbstrata
 	MarcaAbstrata marca;
 	EstampaAbstrata estampa;
 	CorAbstrata cor;
-	public Camisa (CorAbstrata cor, MarcaAbstrata marca, EstampaAbstrata estampa, String tam, RoupaImplementation r)
+	TamanhoAbstrato tamanho;
+	public Camisa (CorAbstrata cor, MarcaAbstrata marca, EstampaAbstrata estampa, TamanhoAbstrato tamanho, RoupaImplementation r)
 	{
 		super(r);
 		this.marca = marca;
-		this.tam = tam;
+		this.tamanho = tamanho;
 		this.estampa = estampa;
 		this.cor = cor;
 	}
@@ -27,7 +29,7 @@ public class Camisa extends RoupaAbstrata
 		setRoupa("Camisa");
 		setMarca(marca);
 		setEstampa(estampa);
-		setTamanho(tam);
+		setTamanho(tamanho);
 		setCor(cor);
 	}	
 }

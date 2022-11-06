@@ -1,6 +1,8 @@
-package br.edu.up;
+package br.edu.up.abstracoes;
 
 import java.util.ArrayList;
+
+import br.edu.up.interfaces.EstampaImplementation;
 
 public abstract class EstampaAbstrata 
 {

@@ -1,4 +1,6 @@
-package br.edu.up;
+package br.edu.up.abstracoes;
+
+import br.edu.up.interfaces.RoupaImplementation;
 
 public abstract class RoupaAbstrata 
 {
@@ -15,7 +17,7 @@ public abstract class RoupaAbstrata
 		roupa.setRoupa(r);
 	}
 	
-	public void setTamanho(String t)
+	public void setTamanho(TamanhoAbstrato t)
 	{
 		roupa.setTamanho(t);
 	}	

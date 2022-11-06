@@ -1,4 +1,6 @@
-package br.edu.up;
+package br.edu.up.abstracoes;
+
+import br.edu.up.interfaces.CorImplementation;
 
 public abstract class CorAbstrata
 {

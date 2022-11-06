@@ -1,20 +1,16 @@
 package br.edu.up.roupas;
 
-import br.edu.up.CorAbstrata;
-import br.edu.up.EstampaAbstrata;
-import br.edu.up.MarcaAbstrata;
-import br.edu.up.RoupaImplementation;
+import br.edu.up.abstracoes.CorAbstrata;
+import br.edu.up.abstracoes.EstampaAbstrata;
+import br.edu.up.abstracoes.MarcaAbstrata;
+import br.edu.up.abstracoes.TamanhoAbstrato;
+import br.edu.up.interfaces.RoupaImplementation;
 
 public class ImplementarRoupa implements RoupaImplementation
 {
 	@Override
 	public void setRoupa(String roupa) {
 		System.out.println(roupa);
-	}
-	
-	@Override
-	public void setTamanho(String tam) {
-		System.out.println("Tamanho: " + tam + ".");
 	}
 
 	@Override
@@ -37,6 +33,19 @@ public class ImplementarRoupa implements RoupaImplementation
 			{
 				System.out.println("	Detalhe: "+detalhe+".");
 			}
+		}
+	}
+
+	@Override
+	public void setTamanho(TamanhoAbstrato tamanho) {
+		if(tamanho.tamanho() != "Numero")
+		{
+			System.out.println("Tamanho: " + tamanho.tamanho() + ".");
+			System.out.println("	Dimenções: "+tamanho.dimensoes()+".");
+		}
+		else
+		{
+			System.out.println("Número: " + tamanho.numero() + ".");
 		}
 	}
 }

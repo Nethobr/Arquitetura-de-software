@@ -1,7 +1,7 @@
 package br.edu.up.estampas;
 
-import br.edu.up.EstampaAbstrata;
-import br.edu.up.EstampaImplementation;
+import br.edu.up.abstracoes.EstampaAbstrata;
+import br.edu.up.interfaces.EstampaImplementation;
 
 public class Estampa extends EstampaAbstrata
 {

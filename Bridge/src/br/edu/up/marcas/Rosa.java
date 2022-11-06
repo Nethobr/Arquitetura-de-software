@@ -1,11 +1,11 @@
-package br.edu.up.cores;
+package br.edu.up.marcas;
 
 import br.edu.up.interfaces.CorImplementation;
 
-public class Verde implements CorImplementation
+public class Rosa implements CorImplementation
 {
 	@Override
 	public String getNome() {
-		return "Verde";
+		return "Rosa";
 	}
 }
