@@ -27,16 +27,25 @@ public class GuardaRoupas {
 		
 		//	Uma Camisa
 		RoupaAbstrata camisa = 
+<<<<<<< HEAD
 				new Camisa( new Cor(	new Branco()),		//	Cor.
 							new Marca(	new Adidas()),		// 	a marca.
 							new Estampa(new Caveira ()),	//	Estampa.
 							new Tamanho(new GG()), 			//	Tamanho
 							new ImplementarRoupa());		// Implementando a roupa.
+=======
+				new Camisa(	new Cor(	new Branco()),		//	Cor.
+						new Marca(	new Adidas()),		// 	a marca.
+						new Estampa(	new Caveira ()),	//	Estampa.
+						"GG", 					//	Tamanho
+						new ImplementarRoupa());		//	Implementando a roupa.
+>>>>>>> 51ebedbbd18cac5cd58be1c94bdf361483810447
 		//	Criando a roupa:
 		camisa.criarRoupa();
 		
 		System.out.println();
 		
+<<<<<<< HEAD
 		//	Roupa linda da moranguinho
 		RoupaAbstrata moranguinhoFashion =
 				new Camisa(	new Cor(new Rosa()), 
@@ -57,5 +66,16 @@ public class GuardaRoupas {
 							new ImplementarRoupa()
 							);
 		camisaVermelha.criarRoupa();
+=======
+		//	Uma Cueca
+		RoupaAbstrata cueca =
+				new Cueca(	new Cor(	new Vermelho()), 
+						new Marca(	new Lacoste()), 
+						new Estampa(	new Vazia()),
+						"GGG",
+						new ImplementarRoupa());
+		//	Criando a cueca:
+		cueca.criarRoupa();
+>>>>>>> 51ebedbbd18cac5cd58be1c94bdf361483810447
 	}
 }
