@@ -1,7 +1,4 @@
-package br.edu.up.decoradores;
-
-import br.edu.up.Cafe;
-import br.edu.up.CafeDecorator;
+package br.edu.up;
 
 public class Remover implements Cafe
 {
