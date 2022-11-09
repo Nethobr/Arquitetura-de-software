@@ -9,6 +9,9 @@ public abstract class CafeDecorator implements Cafe
 	}	//	Fim contrutor
 	
 
+	abstract public String getTipo();
+	abstract public double getPreco();
+	
 	@Override
 	public double precoCafe()
 	{
@@ -20,7 +23,7 @@ public abstract class CafeDecorator implements Cafe
 	{
 		return cafeDecorado.tipoDoCafe();
 	}
-	
+
 	public Cafe getCafe()
 	{
 		return cafeDecorado;

@@ -25,9 +25,9 @@ public class GuardaRoupas {
 		
 		//	Uma Camisa
 		RoupaAbstrata camisa = 
-				new Camisa( 	new Cor(new Branco()),		//	Cor.
+				new Camisa( new Cor(new Branco()),		//	Cor.
 						new Marca(new Adidas()),		// 	a marca.
-						new Estampa(new Caveira ()),		//	Estampa.
+						new Estampa(new Caveira ()),	//	Estampa.
 						new Tamanho(new GG()), 			//	Tamanho
 						new ImplementarRoupa());		// 	Implementando a roupa.
 		camisa.criarRoupa();
@@ -46,11 +46,11 @@ public class GuardaRoupas {
 		System.out.println();
 		
 		RoupaAbstrata camisaVermelha =
-				new	Camisa(	new Cor(new Vermelho()),
-							new Marca(new Nike()),
-							new Estampa(new Vazia()),
-							new Tamanho(new Numero(39)),
-							new ImplementarRoupa());
+				new	Camisa( new Cor(new Vermelho()),
+						new Marca(new Nike()),
+						new Estampa(new Vazia()),
+						new Tamanho(new Numero(39)),
+						new ImplementarRoupa());
 		camisaVermelha.criarRoupa();
 	}
 }
