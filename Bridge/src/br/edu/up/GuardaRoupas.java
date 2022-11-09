@@ -14,6 +14,7 @@ import br.edu.up.marcas.Marca;
 import br.edu.up.marcas.Nenhuma;
 import br.edu.up.marcas.Nike;
 import br.edu.up.roupas.Camisa;
+import br.edu.up.roupas.Cueca;
 import br.edu.up.roupas.ImplementarRoupa;
 import br.edu.up.tamanho.GG;
 import br.edu.up.tamanho.Numero;
@@ -21,6 +22,12 @@ import br.edu.up.tamanho.P;
 import br.edu.up.tamanho.Tamanho;
 
 public class GuardaRoupas {
+	public static void pularRoupa() {
+		System.out.println();
+		System.out.println("+--------------------+");
+		System.out.println();
+	}
+	
 	public static void main(String[] args) {
 		
 		//	Uma Camisa
@@ -32,18 +39,18 @@ public class GuardaRoupas {
 						new ImplementarRoupa());		// 	Implementando a roupa.
 		camisa.criarRoupa();
 		
-		System.out.println();
+		pularRoupa();
 		
 		//	Roupa linda da moranguinho
 		RoupaAbstrata moranguinhoFashion =
-				new Camisa(	new Cor(new Rosa()), 
+				new Cueca(	new Cor(new Rosa()), 
 						new Marca(new Nenhuma()), 
 						new Estampa(new Moranguinho()), 
 						new Tamanho(new P()), 
 						new ImplementarRoupa());
 		moranguinhoFashion.criarRoupa();
 		
-		System.out.println();
+		pularRoupa();
 		
 		RoupaAbstrata camisaVermelha =
 				new	Camisa( new Cor(new Vermelho()),

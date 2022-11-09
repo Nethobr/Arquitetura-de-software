@@ -15,37 +15,41 @@ public class ImplementarRoupa implements RoupaImplementation
 
 	@Override
 	public void setMarca(MarcaAbstrata m) {
+		System.out.println();
 		System.out.println("Marca: "+m.getNome()+".");	
 	}
 
 	@Override
 	public void setCor(CorAbstrata cor) {
+		System.out.println();
 		System.out.println("Cor: "+cor.getNome()+".");
 	}
 
 	@Override
 	public void setEstampa(EstampaAbstrata e) {
+		System.out.println();
 		System.out.println("Estampa: " + e.desenhoEstampa() + ".");
 		if (!e.detalheEstampa().isEmpty())
 		{
-			System.out.println(" *Detalhes:");
+			System.out.println(" * Detalhes *");
 			for(String detalhe: e.detalheEstampa())
 			{
-				System.out.println("	Detalhe: "+detalhe+".");
+				System.out.println(" - Detalhe: "+detalhe+".");
 			}
 		}
 	}
 
 	@Override
 	public void setTamanho(TamanhoAbstrato tamanho) {
-		if(tamanho.tamanho() != "Numero")
+		System.out.println();
+		if(!tamanho.tamanho().contains("Numero"))
 		{
 			System.out.println("Tamanho: " + tamanho.tamanho() + ".");
-			System.out.println("	Dimenções: "+tamanho.dimensoes()+".");
+			System.out.println(" - Dimencoes: "+tamanho.dimensoes()+".");
 		}
 		else
 		{
-			System.out.println("Número: " + tamanho.numero() + ".");
+			System.out.println("Numero: " + tamanho.numero() + ".");
 		}
 	}
 }
