@@ -1,4 +1,4 @@
-package br.edu.up.marcas;
+package br.edu.up.cores;
 
 import br.edu.up.interfaces.CorImplementation;
 
