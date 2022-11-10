@@ -13,15 +13,17 @@ public class LeiteDecorator extends Decorator
     private String prod     = "Leite";
     private double preco    = 1.00;
 
-    
-    public String getProd() {
+    //  Getters do decorador
+    public String getProd() 
+    {
         return prod;
-    }
-
-    public double getPreco() {
+    } 
+    public double getPreco() 
+    {
         return preco;
     }
 
+    //  
     @Override
     public String getCafe() 
     {

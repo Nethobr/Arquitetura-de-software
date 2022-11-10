@@ -11,6 +11,7 @@ public class CoffeAdapter
         this.coffe = coffe;
     }   //  Constructor
 
+    //  Adaptador JSON
     public String toJsonString()
     {
         return  "   {\n" + 
@@ -19,6 +20,7 @@ public class CoffeAdapter
                 "   }";
     }   //  toJsonString
 
+    //  Adaptar para um objeto Coffe
     public CoffeModel toCoffeModel()
     {
         CoffeModel coffeModel = new CoffeModel();
