@@ -13,9 +13,9 @@ public class CoffeAdapterJson implements JSON
 
     public String toString()
     {
-        return  "{\n" + 
-                "   \"produto\": " + "\""+coffe.getCafe()+"\",\n" +
-                "   \"preco\": "+coffe.precoProduto()+"\n" + 
-                "}";
+        return  "   {\n" + 
+                "       \"produto\": " + "\""+coffe.getCafe()+"\",\n" +
+                "       \"preco\": "+coffe.precoProduto()+"\n" + 
+                "   }";
     }
 }

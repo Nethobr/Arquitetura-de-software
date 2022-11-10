@@ -1,5 +1,6 @@
 package br.up.edu.MicroServiceDecorator;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 //	Bibliotecas
@@ -13,6 +14,7 @@ import br.up.edu.MicroServiceDecorator.adapter.CoffeAdapterJson;
 import br.up.edu.MicroServiceDecorator.decorator.CanelaDecorator;
 import br.up.edu.MicroServiceDecorator.decorator.LeiteDecorator;
 import br.up.edu.MicroServiceDecorator.decorator.RemoveDecorator;
+import br.up.edu.MicroServiceDecorator.decorator.SorveteDecorator;
 import br.up.edu.MicroServiceDecorator.domain.BasicCoffe;
 import br.up.edu.MicroServiceDecorator.domain.Coffe;
 
@@ -30,23 +32,32 @@ public class Home
 		return new CoffeAdapterJson(cafe).toString();
 	}
 
-	ArrayList<String> coffes = new ArrayList<>();
-	@PostMapping("coffe")
-	public @ResponseBody String addCoffe(String coffe)
+	ArrayList<String> coffes = new ArrayList<String>();
+
+	public void cafes()
 	{
-		coffes.add(coffe);
-		return coffe;
+		Coffe coffe = new BasicCoffe();
+		coffe = new LeiteDecorator(coffe);
+		coffes.add(new CoffeAdapterJson(coffe).toString());
+		coffe = new SorveteDecorator(coffe);
+		coffes.add(new CoffeAdapterJson(coffe).toString());
+		coffe = new RemoveDecorator(coffe, new LeiteDecorator());
+		coffe = new CanelaDecorator(coffe);
+		coffes.add(new CoffeAdapterJson(coffe).toString());
 	}
 
 	@GetMapping("coffes")
-	public @ResponseBody ArrayList<String> coffes()
+	public @ResponseBody String coffes()
 	{
-		ArrayList<String> coffesString = new ArrayList<>();
-		for (String coffe : coffes) 
-		{
-			coffesString.add(coffe);
+		cafes();
+		String tudo = "[\n";
+		for (String string : coffes) {
+			tudo += "" + string + ",\n";
 		}
-		return coffesString; 
+
+		tudo.substring(0, tudo.length() - 2);
+
+		return tudo + "	\n]";
 	}
 
 	@GetMapping("/")
