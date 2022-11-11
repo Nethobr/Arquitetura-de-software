@@ -1,5 +1,8 @@
 package br.up.edu.MicroServiceDecorator.models;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+@EntityScan
 public class CoffeModel 
 {
     private int     id;

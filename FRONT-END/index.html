@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        
+        function api ()
+        {  
+            let t = document.getElementById("text");
+
+            let url = "http://localhost:8080/"
+
+            fetch(url + "coffe",
+            {
+                'method': 'POST',
+                'redirect': 'follow',
+                'headers':
+                {
+                    "Content-Type": "text/plain",
+                    "encoding": "ISO-8859-1"
+                },
+                'body': t.value
+            })
+            .then((response) =>
+	    {   
+		if(response.ok)
+		{
+			return response.text()
+		}
+		else
+		{
+			return response.text().then((text) =>
+			{
+				throw new Error(text)
+			})
+		}
+            })
+            //trata resposta
+            .then((output) =>
+            {
+                console.log(output)
+                alert('Cadastro efetuado! :D')
+            })
+            //trata erro
+            .catch((error) =>
+            {
+                console.log(error)
+                alert('Não foi possível efetuar o cadastro! :(')
+            })
+                }
+    </script>
+</head>
+<body>
+    <input type="text" id="text">
+    <button onclick="api()">aaaaaaaaa</button>
+</body>
+</html>

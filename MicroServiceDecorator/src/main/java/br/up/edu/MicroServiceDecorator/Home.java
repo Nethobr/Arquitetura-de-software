@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,13 +23,13 @@ import br.up.edu.MicroServiceDecorator.domain.BasicCoffe;
 import br.up.edu.MicroServiceDecorator.domain.Coffe;
 import br.up.edu.MicroServiceDecorator.models.CoffeModel;
 
+@CrossOrigin(origins = "*")
 @Controller
 public class Home 
 {
 	//	Alocando um lugar na memória para salvar os cafés.
 	ArrayList<CoffeModel> coffesModel = new ArrayList<CoffeModel> ();
 	int UID = 0;
-
 
 	public void cafesModel()
 	{
@@ -84,10 +85,13 @@ public class Home
 		if (upperCoffe.contains("CANELA")) coffe 	= new CanelaDecorator(coffe);
 		if (upperCoffe.contains("SORVETE")) coffe	= new SorveteDecorator(coffe);
 
+		//	Salvando o café na lista
 		CoffeModel coffeFinal =  new CoffeAdapter(coffe).toCoffeModel();
 		coffeFinal.setId(UID);
 		UID ++;
 		coffesModel.add(coffeFinal);
+
+		//	Retornando um respota do que foi salvo
 		return new ResponseEntity<CoffeModel>(coffeFinal, HttpStatus.OK);
 	}
 
@@ -98,7 +102,6 @@ public class Home
 		//	TODO
 		return null;
 	}
-
 
 	//	Home.
 	@GetMapping("/")
