@@ -27,6 +27,8 @@ public class Home
 {
 	//	Alocando um lugar na memória para salvar os cafés.
 	ArrayList<CoffeModel> coffesModel = new ArrayList<CoffeModel> ();
+	int UID = 0;
+
 
 	public void cafesModel()
 	{
@@ -53,7 +55,11 @@ public class Home
 				cafe = new SorveteDecorator(cafe);
 				cafe = new RemoveDecorator(cafe, new SorveteDecorator());
 
+				// CoffeModel c = new CoffeAdapter(cafe).toCoffeModel();
+				// c.setId(UID);
+				// UID ++;
 		return 	new ResponseEntity<CoffeModel>(
+				// c,
 				new CoffeAdapter(cafe).toCoffeModel(),
 				HttpStatus.OK
 		);
@@ -73,19 +79,21 @@ public class Home
 	{
 		Coffe coffe = new BasicCoffe();
 
-		if (coffeBody.contains("Leite")) coffe 	= new LeiteDecorator(coffe);
-		if (coffeBody.contains("Canela")) coffe 	= new CanelaDecorator(coffe);
-		if (coffeBody.contains("Sorvete")) coffe	= new SorveteDecorator(coffe);
+		String upperCoffe = coffeBody.toUpperCase();
+		if (upperCoffe.contains("LEITE")) coffe 	= new LeiteDecorator(coffe);
+		if (upperCoffe.contains("CANELA")) coffe 	= new CanelaDecorator(coffe);
+		if (upperCoffe.contains("SORVETE")) coffe	= new SorveteDecorator(coffe);
 
 		CoffeModel coffeFinal =  new CoffeAdapter(coffe).toCoffeModel();
-
+		coffeFinal.setId(UID);
+		UID ++;
 		coffesModel.add(coffeFinal);
 		return new ResponseEntity<CoffeModel>(coffeFinal, HttpStatus.OK);
 	}
 
 	//	Atualizando um café
-	@PutMapping("coffe/{produto}")
-	public ResponseEntity<CoffeModel> updateCoffe (@RequestBody CoffeModel coffeBody, @PathVariable String produto)
+	@PutMapping("coffe/{id}")
+	public ResponseEntity<CoffeModel> updateCoffe (@RequestBody CoffeModel coffeBody, @PathVariable int idCoffe)
 	{
 		//	TODO
 		return null;

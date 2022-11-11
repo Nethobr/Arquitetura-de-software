@@ -2,9 +2,11 @@ package br.up.edu.MicroServiceDecorator.models;
 
 public class CoffeModel 
 {
-    private String produto;
-    private double preco;
+    private int     id;
+    private String  produto;
+    private double  preco;
 
+    
     public String getProduto() {
         return produto;
     }
@@ -16,5 +18,11 @@ public class CoffeModel
     }
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     } 
 }

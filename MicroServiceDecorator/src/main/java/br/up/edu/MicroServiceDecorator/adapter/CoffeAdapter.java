@@ -24,6 +24,7 @@ public class CoffeAdapter
     public CoffeModel toCoffeModel()
     {
         CoffeModel coffeModel = new CoffeModel();
+        coffeModel.setId(-1);
         coffeModel.setPreco(coffe.precoProduto());
         coffeModel.setProduto(coffe.getCafe());
         return coffeModel;
