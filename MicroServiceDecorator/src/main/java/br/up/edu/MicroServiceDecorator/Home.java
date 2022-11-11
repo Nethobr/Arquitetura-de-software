@@ -71,7 +71,9 @@ public class Home
 	public ResponseEntity<ArrayList<CoffeModel>> coffes ()
 	{
 		// cafesModel();
-		return new ResponseEntity<ArrayList<CoffeModel>>(coffesModel, HttpStatus.OK);
+		return new ResponseEntity<ArrayList<CoffeModel>>(
+			coffesModel, 
+			HttpStatus.OK);
 	}
 
 	//	Enviando(post) de um café.
@@ -92,15 +94,35 @@ public class Home
 		coffesModel.add(coffeFinal);
 
 		//	Retornando um respota do que foi salvo
-		return new ResponseEntity<CoffeModel>(coffeFinal, HttpStatus.OK);
+		return new ResponseEntity<CoffeModel>(
+			coffeFinal, 
+			HttpStatus.OK);
 	}
 
 	//	Atualizando um café
 	@PutMapping("coffe/{id}")
-	public ResponseEntity<CoffeModel> updateCoffe (@RequestBody CoffeModel coffeBody, @PathVariable int idCoffe)
+	public ResponseEntity<CoffeModel> updateCoffe (
+		@RequestBody CoffeModel coffeBody, 
+		@PathVariable int id) 
 	{
-		//	TODO
-		return null;
+		CoffeModel newCoffe = new CoffeModel();
+		int idCOffe = 0;
+
+		for(CoffeModel coffe: coffesModel)
+		{
+			if(coffe.getId() == id)
+				idCOffe =  coffesModel.indexOf(coffe);
+		}
+
+		//	Salvando
+		newCoffe.setId(id);
+		newCoffe.setPreco(coffeBody.getPreco());
+		newCoffe.setProduto(coffeBody.getProduto());
+		coffesModel.set(idCOffe, newCoffe);
+
+		return new ResponseEntity<CoffeModel>(
+			newCoffe, 
+			HttpStatus.OK);
 	}
 
 	//	Home.
