@@ -31,38 +31,67 @@ public class Home
 	ArrayList<CoffeModel> coffesModel = new ArrayList<CoffeModel> ();
 	int UID = 0;
 
-	public void cafesModel()
+	//	Retorna um café do array de acordo com id.
+	public CoffeModel getCoffeModel(int id)
+	{
+		CoffeModel finalCoffe = new CoffeModel();
+		for(CoffeModel coffe: coffesModel)
+		{
+			if(coffe.getId() == id)
+				finalCoffe = coffesModel.get(id);
+		}
+		return finalCoffe;
+	}	//	getCoffeModel
+
+	//	Pega o index do café no array.
+	public int getIndexOfCoffe(int id)
+	{
+		int idCOffe = 0;
+		for(CoffeModel coffe: coffesModel)
+		{
+			if(coffe.getId() == id)
+				idCOffe =  coffesModel.indexOf(coffe);
+		}
+		return idCOffe;
+	}	//	getIndexOfCoffe
+
+	//	Adiciona decoradores
+	public Coffe coffeBodyString(String string)
 	{
 		Coffe coffe = new BasicCoffe();
 
-		coffe 		= new LeiteDecorator(coffe);
-		coffesModel.add(new CoffeAdapter(coffe).toCoffeModel());
+		String upperCoffe = string.toUpperCase();
+		if (upperCoffe.contains("LEITE")) coffe 		= new LeiteDecorator(coffe);
+		if (upperCoffe.contains("CANELA")) coffe 	= new CanelaDecorator(coffe);
+		if (upperCoffe.contains("SORVETE")) coffe	= new SorveteDecorator(coffe);
 
-		coffe 		= new SorveteDecorator(coffe);
-		coffesModel.add(new CoffeAdapter(coffe).toCoffeModel());
+		return coffe;
+	}	//	removeString
 
-		coffe 		= new RemoveDecorator(coffe, new LeiteDecorator());
-		coffe		= new CanelaDecorator(coffe);
-		coffesModel.add(new CoffeAdapter(coffe).toCoffeModel());
-	}	//	Gambiarra
-
-	//	Retorna um café.
-	@GetMapping("coffe")
-	public ResponseEntity<CoffeModel> coffe () 
+	//	Remove decoradores
+	public Coffe coffeBodyRemoveString(String string)
 	{
-		Coffe 	cafe = new BasicCoffe();
-				cafe = new LeiteDecorator(cafe);
-				cafe = new CanelaDecorator(cafe);
-				cafe = new SorveteDecorator(cafe);
-				cafe = new RemoveDecorator(cafe, new SorveteDecorator());
+		Coffe coffe = new BasicCoffe();
 
-				// CoffeModel c = new CoffeAdapter(cafe).toCoffeModel();
-				// c.setId(UID);
-				// UID ++;
-		return 	new ResponseEntity<CoffeModel>(
-				// c,
-				new CoffeAdapter(cafe).toCoffeModel(),
-				HttpStatus.OK
+		String upperCoffe = string.toUpperCase();
+		if (upperCoffe.contains("LEITE")) coffe 		= new RemoveDecorator(coffe, new LeiteDecorator());
+		if (upperCoffe.contains("CANELA")) coffe 	= new RemoveDecorator(coffe, new CanelaDecorator());
+		if (upperCoffe.contains("SORVETE")) coffe	= new RemoveDecorator(coffe, new SorveteDecorator());
+		
+		return coffe;
+	}	//	coffeBodyRemoveString
+
+	//	Retorna um café de acordo com id.
+	@GetMapping("coffe/{id}")
+	public ResponseEntity<CoffeModel> coffe (
+		@RequestBody CoffeModel coffeModel,
+		@PathVariable int id) {
+
+		CoffeModel coffe = getCoffeModel(id);
+
+		return new ResponseEntity<CoffeModel>(
+			coffe,
+			HttpStatus.OK
 		);
 	}
 
@@ -70,7 +99,6 @@ public class Home
 	@GetMapping("coffes")
 	public ResponseEntity<ArrayList<CoffeModel>> coffes ()
 	{
-		// cafesModel();
 		return new ResponseEntity<ArrayList<CoffeModel>>(
 			coffesModel, 
 			HttpStatus.OK);
@@ -80,12 +108,7 @@ public class Home
 	@PostMapping("coffe")
 	public ResponseEntity<CoffeModel> addCoffe (@RequestBody String coffeBody)
 	{
-		Coffe coffe = new BasicCoffe();
-
-		String upperCoffe = coffeBody.toUpperCase();
-		if (upperCoffe.contains("LEITE")) coffe 	= new LeiteDecorator(coffe);
-		if (upperCoffe.contains("CANELA")) coffe 	= new CanelaDecorator(coffe);
-		if (upperCoffe.contains("SORVETE")) coffe	= new SorveteDecorator(coffe);
+		Coffe coffe = coffeBodyString(coffeBody);
 
 		//	Salvando o café na lista
 		CoffeModel coffeFinal =  new CoffeAdapter(coffe).toCoffeModel();
@@ -106,15 +129,9 @@ public class Home
 		@PathVariable int id) 
 	{
 		CoffeModel newCoffe = new CoffeModel();
-		int idCOffe = 0;
+		int idCOffe = getIndexOfCoffe(id);
 
-		for(CoffeModel coffe: coffesModel)
-		{
-			if(coffe.getId() == id)
-				idCOffe =  coffesModel.indexOf(coffe);
-		}
-
-		//	Salvando
+		//	Ataulizando
 		newCoffe.setId(id);
 		newCoffe.setPreco(coffeBody.getPreco());
 		newCoffe.setProduto(coffeBody.getProduto());
@@ -123,7 +140,7 @@ public class Home
 		return new ResponseEntity<CoffeModel>(
 			newCoffe, 
 			HttpStatus.OK);
-	}
+	}	//	updateCoffe
 
 	//	Home.
 	@GetMapping("/")
