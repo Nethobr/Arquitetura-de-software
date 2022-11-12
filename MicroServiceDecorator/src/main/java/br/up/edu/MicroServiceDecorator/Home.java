@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,11 +29,11 @@ import br.up.edu.MicroServiceDecorator.models.CoffeModel;
 public class Home 
 {
 	//	Alocando um lugar na memória para salvar os cafés.
-	ArrayList<CoffeModel> coffesModel = new ArrayList<CoffeModel> ();
-	int UID = 0;
+	protected ArrayList<CoffeModel> coffesModel = new ArrayList<CoffeModel> ();
+	protected int UID = 0;
 
 	//	Retorna um café do array de acordo com id.
-	public CoffeModel getCoffeModel(int id)
+	protected CoffeModel getCoffeModel(int id)
 	{
 		CoffeModel finalCoffe = new CoffeModel();
 		for(CoffeModel coffe: coffesModel)
@@ -44,7 +45,7 @@ public class Home
 	}	//	getCoffeModel
 
 	//	Pega o index do café no array.
-	public int getIndexOfCoffe(int id)
+	protected int getIndexOfCoffe(int id)
 	{
 		int idCOffe = 0;
 		for(CoffeModel coffe: coffesModel)
@@ -56,37 +57,45 @@ public class Home
 	}	//	getIndexOfCoffe
 
 	//	Adiciona decoradores
-	public Coffe coffeBodyString(String string)
+	protected Coffe coffeBodyString(String string, Coffe coffe)
 	{
-		Coffe coffe = new BasicCoffe();
-
 		String upperCoffe = string.toUpperCase();
-		if (upperCoffe.contains("LEITE")) coffe 		= new LeiteDecorator(coffe);
+		if (upperCoffe.contains("LEITE")) coffe 	= new LeiteDecorator(coffe);
 		if (upperCoffe.contains("CANELA")) coffe 	= new CanelaDecorator(coffe);
 		if (upperCoffe.contains("SORVETE")) coffe	= new SorveteDecorator(coffe);
 
 		return coffe;
-	}	//	removeString
+	}	//	coffeBodyString
 
-	//	Remove decoradores
-	public Coffe coffeBodyRemoveString(String string)
+	//	Adiciona decoradores
+	protected Coffe coffeBodyRemoveString(String string, Coffe coffe)
 	{
-		Coffe coffe = new BasicCoffe();
-
 		String upperCoffe = string.toUpperCase();
-		if (upperCoffe.contains("LEITE")) coffe 		= new RemoveDecorator(coffe, new LeiteDecorator());
+		if (upperCoffe.contains("LEITE")) coffe 	= new RemoveDecorator(coffe, new LeiteDecorator());
 		if (upperCoffe.contains("CANELA")) coffe 	= new RemoveDecorator(coffe, new CanelaDecorator());
 		if (upperCoffe.contains("SORVETE")) coffe	= new RemoveDecorator(coffe, new SorveteDecorator());
-		
 		return coffe;
 	}	//	coffeBodyRemoveString
 
+	//	Atulizar a lista
+	protected CoffeModel updateCoffeList(int id, CoffeModel coffeBody)
+	{
+		CoffeModel newCoffe = new CoffeModel();
+		int idCOffe = getIndexOfCoffe(id);
+
+		//	Ataulizando
+		newCoffe.setId(id);
+		newCoffe.setPreco(coffeBody.getPreco());
+		newCoffe.setProduto(coffeBody.getProduto());
+		coffesModel.set(idCOffe, newCoffe);
+
+		return newCoffe;
+	}	//	updateCoffeList
+
 	//	Retorna um café de acordo com id.
 	@GetMapping("coffe/{id}")
-	public ResponseEntity<CoffeModel> coffe (
-		@RequestBody CoffeModel coffeModel,
-		@PathVariable int id) {
-
+	public ResponseEntity<CoffeModel> coffe (@PathVariable int id) 
+	{
 		CoffeModel coffe = getCoffeModel(id);
 
 		return new ResponseEntity<CoffeModel>(
@@ -108,7 +117,7 @@ public class Home
 	@PostMapping("coffe")
 	public ResponseEntity<CoffeModel> addCoffe (@RequestBody String coffeBody)
 	{
-		Coffe coffe = coffeBodyString(coffeBody);
+		Coffe coffe = coffeBodyString(coffeBody, new BasicCoffe());
 
 		//	Salvando o café na lista
 		CoffeModel coffeFinal =  new CoffeAdapter(coffe).toCoffeModel();
@@ -128,20 +137,76 @@ public class Home
 		@RequestBody CoffeModel coffeBody, 
 		@PathVariable int id) 
 	{
-		CoffeModel newCoffe = new CoffeModel();
-		int idCOffe = getIndexOfCoffe(id);
-
-		//	Ataulizando
-		newCoffe.setId(id);
-		newCoffe.setPreco(coffeBody.getPreco());
-		newCoffe.setProduto(coffeBody.getProduto());
-		coffesModel.set(idCOffe, newCoffe);
+		CoffeModel newCoffe = updateCoffeList(id, coffeBody);
 
 		return new ResponseEntity<CoffeModel>(
 			newCoffe, 
 			HttpStatus.OK);
 	}	//	updateCoffe
 
+	//	Remove um decorador do café por texto
+	@PutMapping("coffeRemoveDec/{id}")
+	public ResponseEntity<CoffeModel> removeDecorator(
+		@RequestBody String coffeBoddy,
+		@PathVariable int id
+	)
+	{
+		CoffeModel coffeModel = getCoffeModel(id);
+
+		Coffe coffe = new CoffeAdapter(coffeModel).toCoffeImpl();
+		coffe = coffeBodyRemoveString(coffeBoddy, coffe);
+
+		// String upperCoffe = coffeBoddy.toUpperCase();
+		// if (upperCoffe.contains("LEITE")) coffe 	= new RemoveDecorator(coffe, new LeiteDecorator());
+		// if (upperCoffe.contains("CANELA")) coffe 	= new RemoveDecorator(coffe, new CanelaDecorator());
+		// if (upperCoffe.contains("SORVETE")) coffe	= new RemoveDecorator(coffe, new SorveteDecorator());
+
+		CoffeModel newCoffe =
+			new CoffeAdapter(coffe).toCoffeModel();
+		
+		newCoffe = updateCoffeList(id, newCoffe);
+
+		return new ResponseEntity<CoffeModel>(
+			newCoffe, 
+			HttpStatus.OK);
+	}	//	removeDecorator
+
+	//	Adiciona um decorador do café por texto
+	@PutMapping("coffeAddDec/{id}")
+	public ResponseEntity<CoffeModel> addDecorator(
+		@RequestBody String coffeBoddy,
+		@PathVariable int id
+	)
+	{
+		CoffeModel coffeModel = getCoffeModel(id);
+
+		Coffe coffe = new CoffeAdapter(coffeModel).toCoffeImpl();
+
+		coffe = coffeBodyString(coffeBoddy, coffe);
+
+		CoffeModel newCoffe =
+			new CoffeAdapter(coffe).toCoffeModel();
+		
+		newCoffe = updateCoffeList(id, newCoffe);
+
+		return new ResponseEntity<CoffeModel>(
+			newCoffe, 
+			HttpStatus.OK);
+	}	//	addDecorator
+
+	//	Remove um café
+	@DeleteMapping("coffe/{id}")
+	public ResponseEntity<CoffeModel> removeCoffe(
+		@PathVariable int id)
+	{
+		CoffeModel coffe = getCoffeModel(id);
+
+		coffesModel.remove(coffe);
+
+		return new ResponseEntity<CoffeModel>(
+			coffe, 
+			HttpStatus.OK);
+	}
 	//	Home.
 	@GetMapping("/")
 	public @ResponseBody String mensagem ()

@@ -6,6 +6,11 @@ import br.up.edu.MicroServiceDecorator.models.CoffeModel;
 public class CoffeAdapter
 {
     private Coffe coffe;
+    private CoffeModel coffeModel;
+    public CoffeAdapter (CoffeModel coffeModel)
+    {
+        this.coffeModel = coffeModel;
+    }
     public CoffeAdapter (Coffe coffe)
     {
         this.coffe = coffe;
@@ -29,4 +34,20 @@ public class CoffeAdapter
         coffeModel.setProduto(coffe.getCafe());
         return coffeModel;
     }   //  toCoffeModel
+
+    //  Adapta para uma implementação de café
+    public Coffe toCoffeImpl()
+    {
+        Coffe innerCoffe = new Coffe() {
+            @Override
+            public String getCafe() {
+                return coffeModel.getProduto();
+            }
+            @Override
+            public double precoProduto() {
+                return coffeModel.getPreco();
+            }
+        };
+        return innerCoffe;
+    }  
 }
