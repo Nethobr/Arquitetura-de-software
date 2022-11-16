@@ -29,11 +29,11 @@ import br.up.edu.MicroServiceDecorator.models.CoffeModel;
 public class Home 
 {
 	//	Alocando um lugar na memória para salvar os cafés.
-	protected ArrayList<CoffeModel> coffesModel = new ArrayList<CoffeModel> ();
-	protected int UID = 0;
+	private ArrayList<CoffeModel> coffesModel = new ArrayList<CoffeModel> ();
+	private int UID = 0;
 
 	//	Retorna um café do array de acordo com id.
-	protected CoffeModel getCoffeModel(int id)
+	private CoffeModel getCoffeModel(int id)
 	{
 		CoffeModel finalCoffe = new CoffeModel();
 		for(CoffeModel coffe: coffesModel)
@@ -45,7 +45,7 @@ public class Home
 	}	//	getCoffeModel
 
 	//	Pega o index do café no array.
-	protected int getIndexOfCoffe(int id)
+	private int getIndexOfCoffe(int id)
 	{
 		int idCOffe = 0;
 		for(CoffeModel coffe: coffesModel)
@@ -57,7 +57,7 @@ public class Home
 	}	//	getIndexOfCoffe
 
 	//	Adiciona decoradores
-	protected Coffe coffeBodyString(String string, Coffe coffe)
+	private Coffe coffeBodyString(String string, Coffe coffe)
 	{
 		String upperCoffe = string.toUpperCase();
 		if (upperCoffe.contains("LEITE")) coffe 	= new LeiteDecorator(coffe);
@@ -68,7 +68,7 @@ public class Home
 	}	//	coffeBodyString
 
 	//	Adiciona decoradores
-	protected Coffe coffeBodyRemoveString(String string, Coffe coffe)
+	private Coffe coffeBodyRemoveString(String string, Coffe coffe)
 	{
 		String upperCoffe = string.toUpperCase();
 		if (upperCoffe.contains("LEITE")) coffe 	= new RemoveDecorator(coffe, new LeiteDecorator());
@@ -78,7 +78,7 @@ public class Home
 	}	//	coffeBodyRemoveString
 
 	//	Atulizar a lista
-	protected CoffeModel updateCoffeList(int id, CoffeModel coffeBody)
+	private CoffeModel updateCoffeList(int id, CoffeModel coffeBody)
 	{
 		CoffeModel newCoffe = new CoffeModel();
 		int idCOffe = getIndexOfCoffe(id);
@@ -156,18 +156,12 @@ public class Home
 	@PutMapping("coffeRemoveDec/{id}")
 	public ResponseEntity<CoffeModel> removeDecorator(
 		@RequestBody String coffeBoddy,
-		@PathVariable int id
-	)
+		@PathVariable int id)
 	{
 		CoffeModel coffeModel = getCoffeModel(id);
 
 		Coffe coffe = new CoffeAdapter(coffeModel).toCoffeImpl();
 		coffe = coffeBodyRemoveString(coffeBoddy, coffe);
-
-		// String upperCoffe = coffeBoddy.toUpperCase();
-		// if (upperCoffe.contains("LEITE")) coffe 	= new RemoveDecorator(coffe, new LeiteDecorator());
-		// if (upperCoffe.contains("CANELA")) coffe 	= new RemoveDecorator(coffe, new CanelaDecorator());
-		// if (upperCoffe.contains("SORVETE")) coffe	= new RemoveDecorator(coffe, new SorveteDecorator());
 
 		CoffeModel newCoffe =
 			new CoffeAdapter(coffe).toCoffeModel();
@@ -183,8 +177,7 @@ public class Home
 	@PutMapping("coffeAddDec/{id}")
 	public ResponseEntity<CoffeModel> addDecorator(
 		@RequestBody String coffeBoddy,
-		@PathVariable int id
-	)
+		@PathVariable int id)
 	{
 		CoffeModel coffeModel = getCoffeModel(id);
 
@@ -213,13 +206,12 @@ public class Home
 		coffe.setProduto(null);
 
 		coffesModel.set(getIndexOfCoffe(id), coffe);
-		
-		// coffesModel.remove(getCoffeModel(id));
 
 		return new ResponseEntity<CoffeModel>(
 			coffe, 
 			HttpStatus.OK);
 	}
+	
 	//	Home.
 	@GetMapping("/")
 	public @ResponseBody String mensagem ()
