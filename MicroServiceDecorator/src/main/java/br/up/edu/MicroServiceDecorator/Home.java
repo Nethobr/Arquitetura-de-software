@@ -108,8 +108,16 @@ public class Home
 	@GetMapping("coffes")
 	public ResponseEntity<ArrayList<CoffeModel>> coffes ()
 	{
+		ArrayList<CoffeModel> finalList = 
+			new ArrayList<>();
+
+		for (CoffeModel coffeModel : coffesModel) {
+			if(coffeModel.getProduto() != null)
+				finalList.add(coffeModel);
+		}
+
 		return new ResponseEntity<ArrayList<CoffeModel>>(
-			coffesModel, 
+			finalList, 
 			HttpStatus.OK);
 	}
 
@@ -199,9 +207,14 @@ public class Home
 	public ResponseEntity<CoffeModel> removeCoffe(
 		@PathVariable int id)
 	{
-		CoffeModel coffe = getCoffeModel(id);
+		CoffeModel coffe = new CoffeModel();
+		coffe.setId(id);
+		coffe.setPreco(0);
+		coffe.setProduto(null);
 
-		coffesModel.remove(coffe);
+		coffesModel.set(getIndexOfCoffe(id), coffe);
+		
+		// coffesModel.remove(getCoffeModel(id));
 
 		return new ResponseEntity<CoffeModel>(
 			coffe, 
