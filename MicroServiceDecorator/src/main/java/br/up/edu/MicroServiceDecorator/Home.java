@@ -56,27 +56,6 @@ public class Home
 		return idCOffe;
 	}	//	getIndexOfCoffe
 
-	//	Adiciona decoradores
-	private Coffe coffeBodyString(String string, Coffe coffe)
-	{
-		String upperCoffe = string.toUpperCase();
-		if (upperCoffe.contains("LEITE")) coffe 	= new LeiteDecorator(coffe);
-		if (upperCoffe.contains("CANELA")) coffe 	= new CanelaDecorator(coffe);
-		if (upperCoffe.contains("SORVETE")) coffe	= new SorveteDecorator(coffe);
-
-		return coffe;
-	}	//	coffeBodyString
-
-	//	Adiciona decoradores
-	private Coffe coffeBodyRemoveString(String string, Coffe coffe)
-	{
-		String upperCoffe = string.toUpperCase();
-		if (upperCoffe.contains("LEITE")) coffe 	= new RemoveDecorator(coffe, new LeiteDecorator());
-		if (upperCoffe.contains("CANELA")) coffe 	= new RemoveDecorator(coffe, new CanelaDecorator());
-		if (upperCoffe.contains("SORVETE")) coffe	= new RemoveDecorator(coffe, new SorveteDecorator());
-		return coffe;
-	}	//	coffeBodyRemoveString
-
 	//	Atulizar a lista
 	private CoffeModel updateCoffeList(int id, CoffeModel coffeBody)
 	{
@@ -91,6 +70,27 @@ public class Home
 
 		return newCoffe;
 	}	//	updateCoffeList
+
+	//	Adiciona decoradores
+	private Coffe coffeBodyString(String string, Coffe coffe)
+	{
+		String upperCoffe = string.toUpperCase();
+		if (upperCoffe.contains("LEITE")) coffe 	= new LeiteDecorator(coffe);
+		if (upperCoffe.contains("CANELA")) coffe 	= new CanelaDecorator(coffe);
+		if (upperCoffe.contains("SORVETE")) coffe	= new SorveteDecorator(coffe);
+
+		return coffe;
+	}	//	coffeBodyString
+
+	//	Remove decoradores
+	private Coffe coffeBodyRemoveString(String string, Coffe coffe)
+	{
+		String upperCoffe = string.toUpperCase();
+		if (upperCoffe.contains("LEITE")) coffe 	= new RemoveDecorator(coffe, new LeiteDecorator());
+		if (upperCoffe.contains("CANELA")) coffe 	= new RemoveDecorator(coffe, new CanelaDecorator());
+		if (upperCoffe.contains("SORVETE")) coffe	= new RemoveDecorator(coffe, new SorveteDecorator());
+		return coffe;
+	}	//	coffeBodyRemoveString
 
 	//	Retorna um café de acordo com id.
 	@GetMapping("coffe/{id}")

@@ -9,7 +9,7 @@
 .form
 {
     display: block;
-    width: 50%;
+    margin: auto 0px auto 0px;
 }
 
 label
