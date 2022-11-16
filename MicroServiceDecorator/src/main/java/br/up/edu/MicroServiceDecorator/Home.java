@@ -94,7 +94,7 @@ public class Home
 
 	//	Retorna um café de acordo com id.
 	@GetMapping("coffe/{id}")
-	public ResponseEntity<CoffeModel> coffe (@PathVariable int id) 
+	public ResponseEntity<CoffeModel> coffe(@PathVariable int id) 
 	{
 		CoffeModel coffe = getCoffeModel(id);
 
@@ -106,7 +106,7 @@ public class Home
 
 	//	Retornando toda a lista de cafés adicionados.
 	@GetMapping("coffes")
-	public ResponseEntity<ArrayList<CoffeModel>> coffes ()
+	public ResponseEntity<ArrayList<CoffeModel>> coffes()
 	{
 		ArrayList<CoffeModel> finalList = 
 			new ArrayList<>();
@@ -123,7 +123,7 @@ public class Home
 
 	//	Enviando(post) de um café.
 	@PostMapping("coffe")
-	public ResponseEntity<CoffeModel> addCoffe (@RequestBody String coffeBody)
+	public ResponseEntity<CoffeModel> addCoffe(@RequestBody String coffeBody)
 	{
 		Coffe coffe = coffeBodyString(coffeBody, new BasicCoffe());
 
@@ -141,7 +141,7 @@ public class Home
 
 	//	Atualizando um café
 	@PutMapping("coffe/{id}")
-	public ResponseEntity<CoffeModel> updateCoffe (
+	public ResponseEntity<CoffeModel> updateCoffe(
 		@RequestBody CoffeModel coffeBody, 
 		@PathVariable int id) 
 	{
@@ -197,8 +197,7 @@ public class Home
 
 	//	Remove um café
 	@DeleteMapping("coffe/{id}")
-	public ResponseEntity<CoffeModel> removeCoffe(
-		@PathVariable int id)
+	public ResponseEntity<CoffeModel> removeCoffe(@PathVariable int id)
 	{
 		CoffeModel coffe = new CoffeModel();
 		coffe.setId(id);
@@ -214,10 +213,10 @@ public class Home
 	
 	//	Home.
 	@GetMapping("/")
-	public @ResponseBody String mensagem ()
+	public @ResponseBody String mensagem()
 	{
 		return "Olá!" +
 				"<br/>" +
 				"Bem vindo ao nosso micro-serviço!";
 	}
-}
+}	//	Home

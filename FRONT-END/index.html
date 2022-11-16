@@ -41,44 +41,50 @@
             .then((output) =>
             {
                 console.log(output)
-                alert('Cadastro efetuado! :D')
+                alert('Seu cafézinho foi registrado! ☕')
             })
             //trata erro
             .catch((error) =>
             {
                 console.log(error)
-                alert('Não foi possível efetuar o cadastro! :(')
+                alert('Ocorreu um erro amigão.')
             })
         }
 
-        function listarCoffes ()
+        function listar()
         {
+            
             fetch(url + 'coffes')
-            .then(response => response.json())
-            .then((coffe) =>
+	        .then(response => response.json())
+            .then((coffes) => 
             {
-                let div = document.getElementById('coffes');
-                while(div.firstChild)
+        		//pega div que vai conter a lista de usuarios
+                let lista = document.getElementById("coffes");
+                
+                //limpa div
+                while(lista.firstChild)
                 {
-                    div.removeChild(div.firstChild)
+                    lista.removeChild(lista.firstChild)
                 }
 
-                for(let c of coffe)
+                for(let coffe of coffes)
                 {
                     //cria div para as informacoes de um usuario
-                    let divUsuario = document.createElement('div')
-                    divUsuario.setAttribute('class', 'form')
+                    let divCoffe= document.createElement('div')
+                    divCoffe.setAttribute('class', 'list')
+                    
+                    //pega o nome do usuario
+                    let divNome = document.createElement('div');
+                    divNome.innerText = "Café: " + coffe.produto;
+                    divCoffe.appendChild(divNome);
+                   
+                    let divPreco = document.createElement('div');
+                    divPreco.innerText = "Preço: R$" + coffe.preco;
+                    divCoffe.appendChild(divPreco);
 
-                    let divNome = document.createElement('input')
-                    divNome.placeholder = 'Nome Completo'
-                    divNome.value = c.produto
-                    divUsuario.appendChild(divNome)
-
-                    listaUsuarios.appendChild(divUsuario)
+                    lista.appendChild(divCoffe);
                 }
-            }
-            )
-
+            })
         }
     </script>
 </head>
@@ -90,6 +96,9 @@
         <label>Peça seu café☕</label>
         <input type="text" id="text" placeholder="Ex: Quero um café com sorvete por favor!">
         <button onclick="api()">Registrar</button>
+        <button onclick="listar()">Lista todos os cafés ☕</button>
     </div>
+
+    <div id="coffes"></div>
 </body>
 </html>
